@@ -6,6 +6,7 @@ Created on Sat Oct 17 16:21:03 2020
 """
 
 from tkinter import *
+from tkinter import scrolledtext
 
 class Car:
     def __init__(self, buying, mant, doors, persons, lugBoot, safety, classi, similarity):
@@ -178,7 +179,7 @@ if __name__ == '__main__':
     root = Tk()
     root.title("RBC")
     
-    root.geometry("485x600")
+    root.geometry("500x660")
     
     labelAttributes = Label(root, text="Atributos").grid(row=0, column=0)
     labelBuying = Label(root, text="Preço de compra").grid(row=1, column=0)
@@ -261,7 +262,7 @@ if __name__ == '__main__':
     
     labelText = Label(root, text="Carros com maior similaridade:").grid(row=10, column=0, sticky=W)
     
-    textCars = Text(root, width=60)
+    textCars = scrolledtext.ScrolledText(root, width=60)
     textCars.grid(row=11, columnspan=3)
     
     root.mainloop()
