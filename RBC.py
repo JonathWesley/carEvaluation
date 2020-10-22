@@ -90,12 +90,16 @@ def calculateSimilarity():
     arrayEntry = convertData(entry)
     
     weight = []
-    weight.append(float(buyingWeight.get()))
-    weight.append(float(mantWeight.get()))
-    weight.append(float(doorsWeight.get()))
-    weight.append(float(personsWeight.get()))
-    weight.append(float(lugBootWeight.get()))
-    weight.append(float(safetyWeight.get()))
+    try:
+        weight.append(float(buyingWeight.get()))
+        weight.append(float(mantWeight.get()))
+        weight.append(float(doorsWeight.get()))
+        weight.append(float(personsWeight.get()))
+        weight.append(float(lugBootWeight.get()))
+        weight.append(float(safetyWeight.get()))
+    except ValueError:
+        messagebox.showerror(title="Erro", message="Peso inválido")
+
     
     buyingTable = [[1, 0.66, 0.33, 0],
               [0.66, 1, 0.66, 0.33],
@@ -150,6 +154,15 @@ def calculateSimilarity():
     #    print(carList[i].printCar())
     
     labelClassResult.config(text=carList[0].classi)
+    
+    if carList[0].classi == 'unacc':
+        labelClassResult.configure(bg="indianred1")
+    elif carList[0].classi == 'acc':
+        labelClassResult.configure(bg="yellow")
+    elif carList[0].classi == 'good':
+        labelClassResult.configure(bg="lightgreen")
+    else:
+        labelClassResult.configure(bg="skyblue")
     
     i=1
     for item in carList:
@@ -243,7 +256,7 @@ if __name__ == '__main__':
     
     labelClassResultText = Label(root, text="Classe carro de entrada: ").grid(row=9, column=0, sticky=W)
     
-    labelClassResult = Label(root, bg="red")
+    labelClassResult = Label(root)
     labelClassResult.grid(row=9, column=0, sticky=E)
     
     labelText = Label(root, text="Carros com maior similaridade:").grid(row=10, column=0, sticky=W)
